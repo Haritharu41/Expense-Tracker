@@ -1,26 +1,25 @@
 <?php
 require_once 'DB.php';
 require_once 'Expense.php';
+
+require_once 'ExpenseRepository.php';
 class ExpenseManager
 {
     private $conn;
+    private $repo;
     public function __construct()
     {
         $this->conn = DB::connect();
+
+        $this->repo = new ExpenseRepository();
     }
 
     public function addExpense(Expense $expense)
     {
-        $stmt = $this->conn->prepare("INSERT INTO expenses (amount, category, date, description) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param(
-            "dsss",
-            $expense->getAmount(),
-            $expense->getCategory(),
-            $expense->getDate(),
-            $expense->getDescription()
-        );
-        $stmt->execute();
-        $stmt->close();
+        if ($expense->getAmount() <= 0) {
+            throw new Exception("Amount must be greater than 0");
+        }
+        $this->repo->insertExpense($expense);
     }
 
     public function getAllExpenses()

@@ -11,6 +11,7 @@ class ExpenseController
         $this->manager = new ExpenseManager();
     }
 
+
     public function handleRequest()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,19 +58,6 @@ class ExpenseController
 
                 header("Location: index.php");
             }
-
-
-            //store updated expense
-            $updatedExpense = new Expense(
-                $_POST['uId'],
-                $_POST['uAmount'],
-                $_POST['uCategory'],
-                $_POST['uDate'],
-                $_POST['uDescription']
-            );
-
-            $this->manager->updateExpense($updatedExpense);
-            header("Location: ../index.php");
         }
 
         // NEW: Check for category filter
