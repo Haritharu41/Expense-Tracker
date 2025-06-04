@@ -1,6 +1,6 @@
 <?php
-require_once './Models/Expense.php';
-require_once './Models/ExpenseManager.php';
+require_once './Models/ExpenseData.php';
+require_once './Models/ExpenseModel.php';
 
 class ExpenseController
 {
@@ -8,7 +8,7 @@ class ExpenseController
     public function __construct()
 
     {
-        $this->manager = new ExpenseManager();
+        $this->manager = new ExpenseModel();
     }
 
 
@@ -30,7 +30,7 @@ class ExpenseController
 
             //store updated expense
             if (isset($_POST['action']) && $_POST['action'] === 'update') {
-                $updatedExpense = new Expense(
+                $updatedExpense = new ExpenseData(
                     $_POST['uId'],
                     $_POST['uAmount'],
                     $_POST['uCategory'],
@@ -44,7 +44,7 @@ class ExpenseController
             }
 
 
-            $expense = new Expense(
+            $expense = new ExpenseData(
                 $_POST['id'],
                 $_POST['amount'],
                 $_POST['category'],

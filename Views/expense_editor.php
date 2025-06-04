@@ -1,13 +1,16 @@
 <?php
+// enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-require_once '../Models/ExpenseManager.php';
+require_once '../Models/ExpenseModel.php';
 
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 if (!$id) {
     header("Location: ../index.php");
     exit;
 }
-$getExpenseBy = new ExpenseManager();
+$getExpenseBy = new ExpenseModel();
 $expense = $getExpenseBy->getExpenseById($id);
 $expense = $expense ? $expense->getDetails() : null;
 if (!$expense) {

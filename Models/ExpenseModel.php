@@ -1,25 +1,28 @@
 <?php
-require_once 'DB.php';
-require_once 'Expense.php';
+require_once __DIR__ . '/../Core/DB.php';
+require_once 'ExpenseData.php';
 
-require_once 'ExpenseRepository.php';
-class ExpenseManager
+class ExpenseModel
 {
     private $conn;
     private $repo;
     public function __construct()
     {
         $this->conn = DB::connect();
-
-        $this->repo = new ExpenseRepository();
     }
 
-    public function addExpense(Expense $expense)
+    public function addExpense($expense)
     {
-        if ($expense->getAmount() <= 0) {
-            throw new Exception("Amount must be greater than 0");
-        }
-        $this->repo->insertExpense($expense);
+        $stmt = $this->conn->prepare("INSERT INTO expenses (amount, category, date, description) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param(
+            "dsss",
+            $expense->getAmount(),
+            $expense->getCategory(),
+            $expense->getDate(),
+            $expense->getDescription()
+        );
+        $stmt->execute();
+        $stmt->close();
     }
 
     public function getAllExpenses()
@@ -28,7 +31,7 @@ class ExpenseManager
         $result = $this->conn->query("SELECT * FROM expenses ORDER BY date DESC");
 
         while ($row = $result->fetch_assoc()) {
-            $expenses[] = new Expense(
+            $expenses[] = new ExpenseData(
                 $row["id"],
                 $row['amount'],
                 $row['category'],
@@ -77,7 +80,7 @@ class ExpenseManager
         $stmt->close();
 
         if ($expenseData) {
-            return new Expense(
+            return new ExpenseData(
                 $expenseData["id"],
                 $expenseData['amount'],
                 $expenseData['category'],
@@ -99,7 +102,7 @@ class ExpenseManager
 
         $expenses = [];
         while ($row = $result->fetch_assoc()) {
-            $expenses[] = new Expense(
+            $expenses[] = new ExpenseData(
                 $row["id"],
                 $row['amount'],
                 $row['category'],
@@ -112,7 +115,7 @@ class ExpenseManager
         return $expenses;
     }
 
-    public function updateExpense(Expense $updatedExpense)
+    public function updateExpense($updatedExpense)
     {
         $stmt = $this->conn->prepare("UPDATE expenses SET amount = ?, category = ?, date = ?, description = ? WHERE id = ?");
         $stmt->bind_param(

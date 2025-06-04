@@ -1,5 +1,5 @@
 <?php
-class Expense
+class ExpenseData
 {
     private $id;
     private $amount;
