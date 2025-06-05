@@ -6,7 +6,6 @@ require_once 'ExpenseData.php';
 class ExpenseModel
 {
     private $conn;
-    private $repo;
     public function __construct()
     {
         $this->conn = DB::connect();

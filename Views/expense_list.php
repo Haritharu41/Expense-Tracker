@@ -29,6 +29,12 @@
                         <i class="bi bi-trash3 me-1"></i> Delete All Expenses
                     </button>
                 </form>
+                <form action="./Auth/Logout.php" onsubmit="return  confirm('Are you sure you want to Log out ?');" class="m-0">
+                    <button type="submit" class="btn btn-outline-danger shadow-sm d-flex align-items-center">
+                        <i class="bi bi-box-arrow-right me-1"></i>
+                        Log Out
+                    </button>
+                </form>
             </div>
         </div>
 
