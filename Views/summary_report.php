@@ -39,21 +39,24 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th scope="col">Category</th>
-                                        <th scope="col">Total Amount</th>
-                                        <th scope="col">Percentage</th>
+                                        <th scope="col " class="text-center">Total Amount</th>
+                                        <th scope="col" class="text-end">Percentage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($summary as $category => $amount): ?>
                                         <tr>
                                             <td><?= htmlspecialchars($category) ?></td>
-                                            <td class="text-end text-success fw-semibold"><?= number_format($amount, 2) ?></td>
-                                            <td class="text-end text-success fw-semibold"><?php echo $amount; ?></td>
+                                            <td class="text-center text-success fw-semibold"><?= number_format($amount) ?></td>
+                                            <td class="text-end text-success fw-semibold"><?= number_format(($amount / $total) * 100);
+                                                                                            echo '%'; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                     <tr class="table-primary">
                                         <td class="fw-bold">Total</td>
-                                        <td class="fw-bold text-end"><?= number_format($total, 2) ?></td>
+                                        <td class="fw-bold text-center"><?= number_format($total) ?></td>
+                                        <td class="fw-bold text-end">100%</td>
+
                                     </tr>
                                 </tbody>
                             </table>
