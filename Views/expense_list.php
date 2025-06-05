@@ -51,6 +51,7 @@
                                 <option value="Home" <?= ($_GET['category'] ?? '') == 'Home' ? 'selected' : '' ?>>Home</option>
                                 <option value="Family" <?= ($_GET['category'] ?? '') == 'Family' ? 'selected' : '' ?>>Family</option>
                                 <option value="Health" <?= ($_GET['category'] ?? '') == 'Health' ? 'selected' : '' ?>>Health/Sport</option>
+                                <option value="Other" <?= ($_GET['category'] ?? '') == 'Other' ? 'selected' : '' ?>>Other(Expenses)</option>
                             </select>
                         </div>
                     </div>

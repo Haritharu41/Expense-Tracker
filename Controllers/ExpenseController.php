@@ -1,4 +1,8 @@
 <?php
+
+// enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once './Models/ExpenseData.php';
 require_once './Models/ExpenseModel.php';
 
@@ -63,6 +67,8 @@ class ExpenseController
         // NEW: Check for category filter
         if (isset($_GET['category']) && $_GET['category'] !== 'all') {
             $category = $_GET['category'];
+
+
             $expenses = $this->manager->getExpensesByCategory($category);
             $total = $this->manager->getTotalExpenseByCategory($category);
         } else {
@@ -77,6 +83,7 @@ class ExpenseController
     {
         $summary = $this->manager->getSummaryByCategory();
         $total = $this->manager->getTotalExpense();
+
 
         include './Views/summary_report.php';
     }

@@ -40,12 +40,10 @@
                                     <option value="Health">
 
                                         Health/Sport</option>
-                                    <option value="Pets">
 
-                                        Pets</option>
-                                    <option value="Travels">
+                                    <option value="Travel">
                                         Travels</option>
-                                    <option value="Other (Expenses)">
+                                    <option value="Other">
 
                                         Other (Expenses)</option>
                                 </select>

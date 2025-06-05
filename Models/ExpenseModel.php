@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../Core/DB.php';
 require_once 'ExpenseData.php';
 
+
 class ExpenseModel
 {
     private $conn;
@@ -102,6 +103,7 @@ class ExpenseModel
 
         $expenses = [];
         while ($row = $result->fetch_assoc()) {
+
             $expenses[] = new ExpenseData(
                 $row["id"],
                 $row['amount'],
