@@ -12,10 +12,6 @@ function redirectToLogin()
     exit();
 }
 
-// function getCurrentTeacher()
-// {
-//     return $_SESSION['teacher'] ?? null;
-// }
 
 function logout()
 {

@@ -1,8 +1,6 @@
 <?php
 
-// enable error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
 require_once './Models/ExpenseData.php';
 require_once './Models/ExpenseModel.php';
 

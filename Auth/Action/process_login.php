@@ -21,13 +21,11 @@ if (empty($_POST['password'])) {
 }
 
 
-
 if (!empty($errors)) {
     $_SESSION['errors'] = $errors;
     header("Location: ../login.php");
     exit();
 }
-
 
 $query = "SELECT * FROM users WHERE email = ?";
 $stmt = $conn->prepare($query);
